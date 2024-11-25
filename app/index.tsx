@@ -37,7 +37,7 @@ export default function Index() {
             </Text>
           </View>
 
-          <Link href="/(tabs)/home" asChild>
+          <Link href="/(auth)/sign-in" asChild>
             <TouchableOpacity style={styles.button} activeOpacity={0.75}>
               <Text style={styles.buttonText}>Get Started</Text>
             </TouchableOpacity>
