@@ -1,4 +1,7 @@
+import { Colors } from '@/constants/Colors';
+import { lineHeight } from '@/constants/FontRules';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Link } from 'expo-router';
 import {
   ImageBackground,
   StyleSheet,
@@ -6,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const onboardingImage = require('@/assets/images/onboarding.png');
 
@@ -22,7 +26,7 @@ export default function Index() {
         start={{ x: 0.5, y: 0.4 }}
         end={{ x: 0.5, y: 1 }}
       >
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <View>
             <Text style={styles.heading}>
               Fall in Love with Coffee in Blissful Delight!
@@ -33,14 +37,12 @@ export default function Index() {
             </Text>
           </View>
 
-          <TouchableOpacity
-            style={styles.button}
-            activeOpacity={0.75}
-            onPress={() => alert('Onboarding')}
-          >
-            <Text style={styles.buttonText}>Get Started</Text>
-          </TouchableOpacity>
-        </View>
+          <Link href="/(tabs)/home" asChild>
+            <TouchableOpacity style={styles.button} activeOpacity={0.75}>
+              <Text style={styles.buttonText}>Get Started</Text>
+            </TouchableOpacity>
+          </Link>
+        </SafeAreaView>
       </LinearGradient>
     </ImageBackground>
   );
@@ -49,7 +51,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#050505',
+    backgroundColor: Colors.darkest,
     height: 536,
     zIndex: -2,
   },
@@ -67,30 +69,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   heading: {
-    textAlign: 'center',
-    fontSize: 32,
-    fontWeight: 'semibold',
     color: 'white',
+    fontSize: 32,
+    fontFamily: 'SoraSemiBold',
+    lineHeight: lineHeight(32),
     marginBottom: 8,
+    textAlign: 'center',
   },
   text: {
-    color: '#A2A2A2',
+    color: Colors.gray,
     textAlign: 'center',
     fontSize: 14,
+    lineHeight: lineHeight(14),
+    fontFamily: 'SoraRegular',
   },
   button: {
-    backgroundColor: '#C67C4E',
+    backgroundColor: Colors.primary,
     borderRadius: 16,
     paddingHorizontal: 20,
     paddingVertical: 16,
     width: '100%',
-    marginTop: 32,
-    marginBottom: 52,
+    marginVertical: 32,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
-    fontWeight: 'semibold',
+    fontFamily: 'SoraSemiBold',
   },
 });

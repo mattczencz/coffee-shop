@@ -1,0 +1,1 @@
+export const lineHeight = (fontSize: number) => fontSize * 1.5;
