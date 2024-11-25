@@ -1,9 +1,11 @@
 import CategoryButton from '@/components/CategoryButton';
+import SearchHero from '@/components/SearchHero';
 import { Colors } from '@/constants/Colors';
 import { coffees } from '@/constants/Data';
 import { CoffeeCategory } from '@/lib/types';
+import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => {
   const [currentCategory, setCurrentCategory] = useState<CoffeeCategory>('all');
@@ -11,8 +13,10 @@ const HomeScreen = () => {
     setCurrentCategory(category);
 
   return (
-    <SafeAreaView style={styles.body}>
+    <>
+      <StatusBar style="light" />
       <ScrollView>
+        <SearchHero />
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -37,7 +41,7 @@ const HomeScreen = () => {
           <Text>Current Category: {currentCategory}</Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 };
 
