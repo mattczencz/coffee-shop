@@ -1,47 +1,50 @@
 import CategoryButton from '@/components/CategoryButton';
+import ProductGrid from '@/components/ProductGrid';
 import SearchHero from '@/components/SearchHero';
 import { Colors } from '@/constants/Colors';
-import { coffees } from '@/constants/Data';
+import { coffeeCategories, coffees } from '@/constants/Data';
 import { CoffeeCategory } from '@/lib/types';
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 const HomeScreen = () => {
   const [currentCategory, setCurrentCategory] = useState<CoffeeCategory>('all');
+  const filteredCoffees = useMemo(
+    () =>
+      currentCategory === 'all'
+        ? coffees
+        : coffees.filter((c) => c.category === currentCategory),
+    [currentCategory]
+  );
+
   const changeCategory = (category: CoffeeCategory) =>
     setCurrentCategory(category);
 
   return (
-    <>
-      <StatusBar style="light" />
-      <ScrollView>
-        <SearchHero />
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoryButtonsContainer}
-        >
+    <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
+      <SearchHero />
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoryButtonsContainer}
+      >
+        <CategoryButton
+          active={currentCategory === 'all'}
+          coffeeInfo={{ id: -1, label: 'All Coffee', category: 'all' }}
+          handlePress={changeCategory}
+        />
+        {coffeeCategories.map((c) => (
           <CategoryButton
-            active={currentCategory === 'all'}
-            coffeeInfo={{ id: -1, label: 'All Coffee', category: 'all' }}
+            key={c.id}
+            active={currentCategory === c.category}
+            coffeeInfo={c}
             handlePress={changeCategory}
           />
-          {coffees.map((c) => (
-            <CategoryButton
-              key={c.id}
-              active={currentCategory === c.category}
-              coffeeInfo={c}
-              handlePress={changeCategory}
-            />
-          ))}
-        </ScrollView>
-
-        <View style={{ ...styles.placeholder, backgroundColor: Colors.gray }}>
-          <Text>Current Category: {currentCategory}</Text>
-        </View>
+        ))}
       </ScrollView>
-    </>
+
+      <ProductGrid products={filteredCoffees} />
+    </ScrollView>
   );
 };
 

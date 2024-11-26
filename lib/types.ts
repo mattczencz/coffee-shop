@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 export type CoffeeCategory = 
 'all' |
 'machiato' | 
@@ -6,9 +8,19 @@ export type CoffeeCategory =
 'espresso' |
 'deep-foam';
 
-export type Coffee = {
+export type CoffeeFilter = {
   id: number;
   label: string;
   category: CoffeeCategory;
-  image?: string;
+}
+
+export type Coffee = {
+  id: string;
+  name: string;
+  description: string;
+  category: CoffeeCategory;
+  image?: ImageSourcePropType;
+  rating?: number;
+  ingredients?: string;
+  nutritionInfo?: string;
 }

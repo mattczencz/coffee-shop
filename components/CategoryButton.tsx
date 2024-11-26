@@ -1,11 +1,11 @@
 import { Colors } from '@/constants/Colors';
 import { lineHeight } from '@/constants/FontRules';
-import { Coffee, CoffeeCategory } from '@/lib/types';
+import { CoffeeCategory, CoffeeFilter } from '@/lib/types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 type Props = {
   active: boolean;
-  coffeeInfo: Coffee;
+  coffeeInfo: CoffeeFilter;
   handlePress: (category: CoffeeCategory) => void;
 };
 
