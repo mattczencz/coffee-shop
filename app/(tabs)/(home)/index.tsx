@@ -1,4 +1,5 @@
 import CategoryButton from '@/components/CategoryButton';
+import ProductCard from '@/components/ProductCard';
 import ProductGrid from '@/components/ProductGrid';
 import SearchHero from '@/components/SearchHero';
 import { Colors } from '@/constants/Colors';
@@ -44,6 +45,13 @@ const HomeScreen = () => {
       </ScrollView>
 
       <ProductGrid products={filteredCoffees} />
+
+      {/* 
+        -- Uncomment to test not-found route -- 
+        <ProductCard
+          productInfo={{ id: '', name: '', description: '', category: 'latte' }}
+        /> 
+      */}
     </ScrollView>
   );
 };

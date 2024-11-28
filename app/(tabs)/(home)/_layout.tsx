@@ -1,6 +1,6 @@
 import FavoriteButton from '@/components/FavoriteButton';
 import HeaderBack from '@/components/HeaderBack';
-import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '@/constants/Colors';
 import { Stack } from 'expo-router';
 
 const DetailLayout = () => {
@@ -11,6 +11,12 @@ const DetailLayout = () => {
         name="products/[id]"
         options={{
           headerTitle: 'Details',
+          headerTitleStyle: {
+            fontFamily: 'SoraSemiBold',
+            fontSize: 16,
+          },
+          headerStyle: { backgroundColor: Colors.offWhite },
+          headerShadowVisible: false,
           headerLeft: () => <HeaderBack />,
           headerRight: () => <FavoriteButton />,
         }}
