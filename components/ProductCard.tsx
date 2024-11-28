@@ -22,7 +22,13 @@ const ProductCard = ({ productInfo }: Props) => {
   );
 
   return (
-    <Link href="/home" asChild>
+    <Link
+      href={{
+        pathname: '/(tabs)/(home)/products/[id]',
+        params: { id: productInfo.id },
+      }}
+      asChild
+    >
       <TouchableOpacity style={styles.card}>
         <ImageBackground
           source={productInfo.image}

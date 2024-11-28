@@ -14,7 +14,7 @@ export default function TabsLayout() {
         }}
       >
         <Tabs.Screen
-          name="home"
+          name="(home)"
           options={{
             tabBarIcon: ({ focused, color }) => (
               <TabIcon
@@ -65,6 +65,7 @@ export default function TabsLayout() {
             tabBarLabel: 'Settings',
           }}
         />
+        <Tabs.Screen name="products" options={{ href: null }} />
       </Tabs>
       <StatusBar style="dark" />
     </>
