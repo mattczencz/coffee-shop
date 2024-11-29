@@ -1,3 +1,5 @@
+import ContentSection from '@/components/ContentSection';
+import SizeButtons from '@/components/SizeButtons';
 import { Colors } from '@/constants/Colors';
 import { coffeeCategories, coffees } from '@/constants/Data';
 import { lineHeight } from '@/constants/FontRules';
@@ -19,15 +21,33 @@ const ProductDetailScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <Image source={product.image} resizeMode="cover" style={styles.image} />
+
       <Text style={styles.name}>{product.name}</Text>
+
       {category && <Text style={styles.category}>{category.label}</Text>}
+
       <View style={styles.ratingWrapper}>
         <Ionicons name="star" color="#FBBE21" size={20} />
         <Text style={styles.ratingText}>
           {product.rating !== undefined ? product.rating : 'Unrated'}
         </Text>
       </View>
+
       <View style={styles.divider} />
+
+      <ContentSection title="Description" desc={product.description} />
+
+      <ContentSection
+        title="Ingredients"
+        desc={product.ingredients ?? 'No ingredient info available'}
+      />
+
+      <ContentSection
+        title="Nutrition"
+        desc={product.nutritionInfo ?? 'No nutrition info available'}
+      />
+
+      <SizeButtons />
     </ScrollView>
   );
 };
