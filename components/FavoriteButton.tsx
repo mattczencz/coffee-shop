@@ -2,18 +2,22 @@ import { Colors } from '@/constants/Colors';
 import { useFavoritesStore } from '@/store/favoritesStore';
 import { Ionicons } from '@expo/vector-icons';
 import { useGlobalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 const FavoriteButton = () => {
   const { favorites, toggleFavorite } = useFavoritesStore();
   const { id } = useGlobalSearchParams<{ id: string }>();
-  const [liked, setLiked] = useState(favorites.includes(id));
+  const [liked, setLiked] = useState(false);
 
   const handlePress = () => {
     setLiked((state) => !state);
     toggleFavorite(id);
   };
+
+  useEffect(() => {
+    setLiked(favorites.includes(id));
+  }, [favorites]);
 
   return (
     <TouchableOpacity
