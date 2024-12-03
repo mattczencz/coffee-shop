@@ -37,6 +37,14 @@ export default function TabsLayout() {
               />
             ),
             tabBarLabel: 'Favorites',
+            headerShown: true,
+            headerTitle: 'Favorite Coffees',
+            headerTitleStyle: {
+              fontFamily: 'SoraSemiBold',
+              fontSize: 16,
+            },
+            headerStyle: { backgroundColor: Colors.offWhite },
+            headerShadowVisible: false,
           }}
         />
         <Tabs.Screen

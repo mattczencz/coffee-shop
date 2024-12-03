@@ -4,16 +4,22 @@ import ProductCard from './ProductCard';
 
 type Props = {
   products: Coffee[];
+  allowFavoritesRemoval?: boolean;
 };
 
-const ProductGrid = ({ products }: Props) => {
+const ProductGrid = ({ products, allowFavoritesRemoval = false }: Props) => {
   return (
     <FlatList
       data={products}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.grid}
       columnWrapperStyle={styles.column}
-      renderItem={({ item }) => <ProductCard productInfo={item} />}
+      renderItem={({ item }) => (
+        <ProductCard
+          productInfo={item}
+          allowRemoveFromFavorites={allowFavoritesRemoval}
+        />
+      )}
       scrollEnabled={false}
       numColumns={2}
     />

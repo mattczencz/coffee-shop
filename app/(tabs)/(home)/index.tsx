@@ -1,5 +1,4 @@
 import CategoryButton from '@/components/CategoryButton';
-import ProductCard from '@/components/ProductCard';
 import ProductGrid from '@/components/ProductGrid';
 import SearchHero from '@/components/SearchHero';
 import { Colors } from '@/constants/Colors';
@@ -67,10 +66,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 16,
     gap: 16,
-  },
-  placeholder: {
-    height: 400,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

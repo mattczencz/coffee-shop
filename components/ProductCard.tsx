@@ -2,9 +2,11 @@ import { Colors } from '@/constants/Colors';
 import { coffeeCategories } from '@/constants/Data';
 import { lineHeight } from '@/constants/FontRules';
 import { Coffee } from '@/lib/types';
+import { useFavoritesStore } from '@/store/favoritesStore';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import {
+  Alert,
   ImageBackground,
   StyleSheet,
   Text,
@@ -14,12 +16,29 @@ import {
 
 type Props = {
   productInfo: Coffee;
+  allowRemoveFromFavorites?: boolean;
 };
 
-const ProductCard = ({ productInfo }: Props) => {
+const ProductCard = ({ productInfo, allowRemoveFromFavorites }: Props) => {
+  const { toggleFavorite } = useFavoritesStore();
   const coffeeFilter = coffeeCategories.find(
     (c) => c.category === productInfo.category
   );
+
+  const createRemoveFromFavoritesAlert = () => {
+    Alert.alert(
+      `Remove ${productInfo.name} from your favorites?`,
+      'Are you sure you want to remove this item from your favorites?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Remove',
+          style: 'destructive',
+          onPress: () => toggleFavorite(productInfo.id),
+        },
+      ]
+    );
+  };
 
   return (
     <Link
@@ -29,7 +48,12 @@ const ProductCard = ({ productInfo }: Props) => {
       }}
       asChild
     >
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity
+        style={styles.card}
+        onLongPress={
+          allowRemoveFromFavorites ? createRemoveFromFavoritesAlert : undefined
+        }
+      >
         <ImageBackground
           source={productInfo.image}
           resizeMode="cover"
