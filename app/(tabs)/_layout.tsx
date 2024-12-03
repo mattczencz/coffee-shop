@@ -65,7 +65,6 @@ export default function TabsLayout() {
             tabBarLabel: 'Settings',
           }}
         />
-        <Tabs.Screen name="products" options={{ href: null }} />
       </Tabs>
       <StatusBar style="dark" />
     </>

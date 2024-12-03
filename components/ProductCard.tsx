@@ -24,7 +24,7 @@ const ProductCard = ({ productInfo }: Props) => {
   return (
     <Link
       href={{
-        pathname: '/(tabs)/(home)/products/[id]',
+        pathname: '/(tabs)/(home)/product/[id]',
         params: { id: productInfo.id },
       }}
       asChild

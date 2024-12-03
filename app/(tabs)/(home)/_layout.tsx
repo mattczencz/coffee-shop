@@ -8,7 +8,7 @@ const DetailLayout = () => {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen
-        name="products/[id]"
+        name="product/[id]"
         options={{
           headerTitle: 'Details',
           headerTitleStyle: {
