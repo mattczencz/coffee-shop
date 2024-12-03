@@ -18,7 +18,7 @@ const DetailLayout = () => {
           headerStyle: { backgroundColor: Colors.offWhite },
           headerShadowVisible: false,
           headerLeft: () => <HeaderBack />,
-          headerRight: () => <FavoriteButton />,
+          headerRight: (props) => <FavoriteButton />,
         }}
       />
     </Stack>
